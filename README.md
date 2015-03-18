@@ -6,7 +6,7 @@ managing prducts through the WooCommerce API.
 
 It is necessary to install this plugin on the WC site providing the API.
 I have raised a ticket asking whether this can ever be a core feature of WooCommerce,
-but the ticket has been rejected (rather rudely):
+but the ticket has been rejected:
 
 https://github.com/woothemes/woocommerce/issues/7593
 
