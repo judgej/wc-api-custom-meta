@@ -31,8 +31,8 @@ $product = [
 ]
 ~~~
 
-That's it. Make sure those elements are in yoru REST API request, and this plugin is installed at the other end,
+That's it. Make sure those elements are in your REST API request, and this plugin is installed at the other end,
 and you can set any meta fields you like.
 
-I have not tested this with anything other than strings, so be wary that the behaviour storing otehr data structures
+I have not tested this with anything other than strings, so be wary that the behaviour storing other data structures
 in metafields are *undefined* at present.
