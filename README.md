@@ -36,3 +36,24 @@ and you can set any meta fields you like.
 
 I have not tested this with anything other than strings, so be wary that the behaviour storing other data structures
 in metafields are *undefined* at present.
+
+## Returning Product Meta
+
+When retrieving a product, the custom product meta fields will be put into the "meta" field as an array when
+retrieving a product through the API. This only works for capability 'manage_woocommerce' to help prevent
+leakage of secure data.
+
+The field will look something like this:
+
+    "meta": [
+
+        {
+            "test custom field": "Hi There!",
+            "pv_commission_rate": "",
+            "ISBN": "1234567890-1"
+        }
+    ]
+
+Both visibla and hidden ("_" prefixed) fields will be included in the list. All raw WooCommerce fields that 
+are already present in some form in the product data will be filtered out, leaving only fields added by
+third-party plugins or manually by the shop manager.
