@@ -76,8 +76,7 @@ function academe_wc_api_get_meta($product_data, $product, $fields, $server) {
             "_stock",
             "_upsell_ids",
             "_crosssell_ids",
-            "_product_image_g
-            allery",
+            "_product_image_gallery",
             // The sale dates are actually not directly in the normal data returned.
             "_sale_price_dates_from",
             "_sale_price_dates_to",
