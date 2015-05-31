@@ -106,7 +106,7 @@ class Academe_Wc_Api_Custom_Meta
             }
             unset($value);
 
-            $meta = array($all_meta);
+            $meta = $all_meta;
 
             $product_data['meta'] = $meta;
         }
