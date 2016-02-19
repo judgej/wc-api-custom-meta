@@ -83,6 +83,13 @@ class Academe_Wc_Api_Custom_Meta
                 2
             );
         }
+        // Add a hook to update product variations
+        add_action(
+            'woocommerce_api_save_product_variation',
+            array('Academe_Wc_Api_Custom_Meta', 'updateVariationCustomMeta'),
+            10,
+            3
+        );
     }
 
     /**
@@ -109,6 +116,27 @@ class Academe_Wc_Api_Custom_Meta
             $meta = $all_meta;
 
             $product_data['meta'] = $meta;
+
+            if(isset($product_data['variations'])) {
+                foreach($product_data['variations'] as $k => &$variation) {
+                    $variation_id = $variation['id'];
+
+                    $all_meta = get_post_meta($variation_id);
+
+                    // Filter out meta we don't want.
+                    $all_meta = array_diff_key($all_meta, array_flip(static::$protected_fields));
+
+                    // Unserialize the meta field data where necessary.
+                    foreach($all_meta as $key => &$value) {
+                        $value = maybe_unserialize(reset($value));
+                    }
+                    unset($value);
+
+                    $meta = $all_meta;
+
+                    $variation['meta'] = $meta;
+                }
+            }
         }
 
         return $product_data;
@@ -151,6 +179,13 @@ class Academe_Wc_Api_Custom_Meta
                 }
             }
         }
+    }
+
+    /**
+     * Update or create a product variation using above function.
+     */
+    public static function updateVariationCustomMeta($id, $menu_order, $data) {
+        Academe_Wc_Api_Custom_Meta::updateCustomMeta($id, $data);
     }
 }
 
