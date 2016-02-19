@@ -83,6 +83,13 @@ class Academe_Wc_Api_Custom_Meta
                 2
             );
         }
+        // Add a hook to update product variations
+        add_action(
+            'woocommerce_api_save_product_variation',
+            array('Academe_Wc_Api_Custom_Meta', 'updateVariationCustomMeta'),
+            10,
+            3
+        );
     }
 
     /**
@@ -135,6 +142,9 @@ class Academe_Wc_Api_Custom_Meta
         return $product_data;
     }
 
+    public static function updateVariationCustomMeta($id, $menu_order, $data) {
+        Academe_Wc_Api_Custom_Meta::updateCustomMeta($id, $data);
+    }
     /**
      * Update or create a product.
      */
@@ -149,42 +159,6 @@ class Academe_Wc_Api_Custom_Meta
 
             foreach($custom_meta as $field_name => $field_value) {
                 update_post_meta($id, $field_name, wc_clean($field_value));
-            }
-
-            if(isset($data['variations'])) {
-                foreach($data['variations'] as $key => &$variation) {
-                    $variation_id = intval($variation['id']);
-                    if(!empty($variation['custom_meta']) && is_array($variation['custom_meta'])) {
-                        // Filter out protected fields.
-                        $custom_meta = array_diff_key(
-                            $variation['custom_meta'],
-                            array_flip(static::$protected_fields)
-                        );
-                        foreach($custom_meta as $field_name => $field_value) {
-                            update_post_meta($variation_id, $field_name, wc_clean($field_value));
-                        }
-                    }
-
-                    if (!empty($variation['remove_custom_meta']) && is_array($variation['remove_custom_meta'])) {
-                        // Filter out protected fields.
-                        $remove_custom_meta = array_diff(
-                            $variation['remove_custom_meta'],
-                            static::$protected_fields
-                        );
-
-                        foreach($remove_custom_meta as $key => $value) {
-                            // If the key is numeric, then assume $value is the field name
-                            // and all entries need to be deleted. Otherwise is is a specfic value
-                            // of a named meta field that should be removed.
-
-                            if (is_numeric($key)) {
-                                delete_post_meta($variation_id, $value);
-                            } else {
-                                delete_post_meta($variation_id, $key, $value);
-                            }
-                        }
-                    }
-                }
             }
         }
 
