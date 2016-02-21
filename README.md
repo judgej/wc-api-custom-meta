@@ -39,6 +39,36 @@ $product = [
 That's it. Make sure those elements are in your REST API request, and this plugin is installed at the other end,
 and you can set any meta fields you like, except for the protected fields (see below).
 
+From version 0.7.0 metadata on variations is also supported:
+
+~~~php
+$product = [
+    'product' => [
+        'title' => 'Foobar',
+        ...
+        'variations' => [
+            [
+                'regular_price' => '9.50',
+                'attributes' => [
+                    [
+                        'name' => 'Pack Size',
+                        'slug' => 'pack-size',
+                        'option' => '4-pack etc',
+                    ],
+                    // These custom meta fields will be added to the variations.
+                    // When fetching variable products, the metafields will be retrieved
+                    // for the variations.
+                    'custom_meta' => [
+                        'my_custom_variation_field_name' => 'my custom variation value',
+                        'my_other_variation_custom_field_name' => 'my other custom variation value',
+                    ],
+                ],
+            ],
+        ],
+    ]
+]
+~~~
+
 I have not tested this with anything other than strings, so be aware that the behaviour storing other data structures
 in metafields are *undefined* at present.
 
