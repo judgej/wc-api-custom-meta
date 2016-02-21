@@ -62,7 +62,12 @@ class Academe_Wc_Api_Custom_Meta
     );
 
     /**
-     * Initialise the hooks at plugin initialisation.
+     * Initialise all hooks at plugin initialisation.
+     * It may be worth registering the hooks in two layers, so we
+     * first check we have the capability and that WooCommerce is
+     * installed, before registering the remaining hooks. Also can
+     * check if we are being invoked by the WC API, as there is no
+     * point registering these API hooks if we aren't.
      */
     public static function initialize()
     {
@@ -86,7 +91,8 @@ class Academe_Wc_Api_Custom_Meta
     }
 
     /**
-     * Fetch a product.
+     * Fetching a product detail.
+     * Add in the custom meta fields if we have the capability.
      */
     public static function fetchCustomMeta($product_data, $product, $fields, $server) {
         // The admin and shop manager will have the capability "manage_woocommerce".
