@@ -95,6 +95,13 @@ class Academe_Wc_Api_Custom_Meta
             10,
             3
         );
+
+        // WooCommerce 2.6+ support
+        add_action('woocommerce_rest_insert_product',
+            ['Wc_Api_Custom_Meta', 'updateProductMetaAfter'],
+            10,
+            3
+        );
     }
 
     /**
@@ -192,6 +199,23 @@ class Academe_Wc_Api_Custom_Meta
      */
     public static function updateVariationCustomMeta($id, $menu_order, $data) {
         Academe_Wc_Api_Custom_Meta::updateCustomMeta($id, $data);
+    }
+
+
+
+
+    /**
+     * Support for WooCommerce 2.6+
+     */
+    public static function updateProductMetaAfter($post, $request, $new)
+    {
+        // Setup meta data
+        $metaData = [
+            'custom_meta'        => $request->get_param('custom_meta'),
+            'remove_custom_meta' => $request->get_param('remove_custom_meta')
+        ];
+
+        Wc_Api_Custom_Meta::updateCustomMeta($post->ID, $metaData);
     }
 }
 
