@@ -215,7 +215,7 @@ class Academe_Wc_Api_Custom_Meta
             'remove_custom_meta' => $request->get_param('remove_custom_meta')
         ];
 
-        Wc_Api_Custom_Meta::updateCustomMeta($post->ID, $metaData);
+        Academe_Wc_Api_Custom_Meta::updateCustomMeta($post->ID, $metaData);
     }
 }
 
