@@ -98,7 +98,7 @@ class Academe_Wc_Api_Custom_Meta
 
         // WooCommerce 2.6+ support
         add_action('woocommerce_rest_insert_product',
-            ['Wc_Api_Custom_Meta', 'updateProductMetaAfter'],
+            ['Academe_Wc_Api_Custom_Meta', 'updateProductMetaAfter'],
             10,
             3
         );
