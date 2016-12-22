@@ -148,6 +148,9 @@ class Academe_Wc_Api_Custom_Meta
         return $product_data;
     }
 
+    public static function updateVariationCustomMeta($id, $menu_order, $data) {
+        Academe_Wc_Api_Custom_Meta::updateCustomMeta($id, $data);
+    }
     /**
      * Update or create a product.
      */
