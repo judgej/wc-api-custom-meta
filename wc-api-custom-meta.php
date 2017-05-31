@@ -3,7 +3,7 @@
 Plugin Name: WC API Custom Meta
 Plugin URI:  hhttps://github.com/judgej/wc-api-custom-meta
 Description: Allows access to custom meta fields on products through the API.
-Version:     0.7.0
+Version:     0.7.1
 Author:      Jason Judge
 Author URI:  http://academe.co.uk https://github.com/buxit
 */
@@ -106,7 +106,7 @@ class Academe_Wc_Api_Custom_Meta
         // We only want users with this capability to see additional product meta fields.
 
         if (current_user_can('manage_woocommerce')) {
-            $product_id = $product->id;
+            $product_id = $product->get_id();
 
             $all_meta = get_post_meta($product_id);
 

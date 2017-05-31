@@ -3,8 +3,8 @@ Contributors: judgej
 Tags: woocommerce, api
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=B4STZL8F5WHK6
 Requires at least: 4.0.0
-Tested up to: 4.4.2
-Stable tag: 0.7.0
+Tested up to: 4.7.5
+Stable tag: 0.7.1
 License: GPL2
 License URI: http://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html
 
@@ -24,3 +24,8 @@ Standard installation - whatever you normally do.
 Will only work with WooCommerce with the V2 API at his time, which means any version
 from mid-2015, until the V2 API is eventually removed. It may work with the V3
 API, but that has not been tested.
+
+== Changelog ==
+
+= 0.7.1 =
+* Fix for issue https://github.com/judgej/wc-api-custom-meta/issues/22
