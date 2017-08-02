@@ -21,9 +21,14 @@ See the main documentation here: https://github.com/judgej/wc-api-custom-meta
 == Installation ==
 Standard installation - whatever you normally do.
 
-Will only work with WooCommerce with the V2 API at his time, which means any version
-from mid-2015, until the V2 API is eventually removed. It may work with the V3
+Will only work with WooCommerce with the *legacy* V2 API at his time, which means any version
+from mid-2015, until the V2 API is eventually removed. It may work with the *legacy* V3
 API, but that has not been tested.
+
+PLEASE NOTE: the V2 REST API now supports metadata out of the box. This is available in WC 3.x
+For this reason, this plugin will no longer be supported for WC 3.x onwards - it no longer has
+a purpose. More details on how to move to the new API are given on the git repository:
+https://github.com/judgej/wc-api-custom-meta
 
 == Changelog ==
 
