@@ -98,6 +98,10 @@ with the product by inluding the `meta_data` array.
 
 These operations extend to hidden fields - those with meta keys starting with an underscore.
 
+This PHP library will talk to the REST API and support all the features the REST API provides:
+
+https://github.com/woocommerce/wc-api-php
+
 That's just about it really. Use the new v2 REST API and have fun :-)
 
 --------
